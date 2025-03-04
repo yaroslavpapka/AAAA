@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Phoenix Framework">
+      <%= assigns[:page_title] || "MySuperApp" %>
+    </.live_title>
+     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+    
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .header {
+        background-color: #1E3A8A; 
+        color: #fff; 
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .header a:hover {
+        color: #ddd; 
+      }
+
+      .main-container {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 200px;
+        flex-shrink: 0;
+        overflow-y: auto;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 8px;
+        color: inherit;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .sidebar a:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .content {
+        flex-grow: 1;
+        box-sizing: border-box;
+        padding: 16px;
+      }
+
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      body.dark {
+        background-color: #333;
+        color: #eee;
+      }
+
+      body.dark a {
+        color: #bbd;
+      }
+
+      body.dark a:hover {
+        color: #fff;
+      }
+
+      body.dark .header {
+        background-color: #1E3A8A;
+      }
+
+      body.dark .header a {
+        color: #eee;
+      }
+
+      body.dark th {
+        background-color: #555;
+        color: #eee;
+      }
+
+      body.dark td {
+        background-color: #444;
+        color: #eee; 
+      }
+
+      body.dark .sidebar a {
+        color: #eee;
+      }
+
+      body.dark .sidebar a:hover {
+        background-color: #555;
+      }
+
+      body.light {
+        background-color: #f9f9f9;
+        color: #333; 
+      }
+
+      body.light a {
+        color: #1E3A8A;
+      }
+
+      body.light a:hover {
+        color: #0056b3;
+      }
+
+      body.light .header {
+        background-color: #1E3A8A;
+      }
+
+      body.light .header a {
+        color: #fff; 
+      }
+
+      body.light th {
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      body.light td {
+        background-color: #fff;
+        color: #333;
+      }
+
+      body.light .sidebar a {
+        color: #333;
+      }
+
+      body.light .sidebar a:hover {
+        background-color: rgba(0, 0, 0, 0.05); 
+      }
+
+      button:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      button.dark {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #eee;
+      }
+
+      button.dark:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .modal.dark, .drawer.dark {
+        background-color: #444; 
+        color: #eee; 
+      }
+    </style>
+  </head>
+  
+  <body class="bg-gray-100 text-gray-800 light">
+    <div class="header">
+      <a href="/" aria-label="admin main page">
+        <svg class="moon-logo" style="height: 3em; width: 3em">
+          <use href="/moon_icons/svgs/logos/logo-moon-design-short.svg#item" />
+        </svg>
+      </a>
+      
+      <ul class="flex items-center gap-4">
+        <%= if @current_user do %>
+          <li class="text-[1.2rem] leading-6 text-white">
+            <%= @current_user.email %>
+            <span class="text-gray-400">(<%= @current_user.role.permission.name %>)</span>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/settings"}
+              class="text-[1.2rem] leading-6 text-white font-semibold hover:text-gray-300"
+            >
+              Settings
+            </.link>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/log_out"}
+              method="delete"
+              class="text-[1.2rem] leading-6 text-white font-semibold hover:text-gray-300"
+            >
+              Log out
+            </.link>
+          </li>
+        <% else %>
+          <li>
+            <.link
+              href={~p"/users/register"}
+              class="text-[1.2rem] leading-6 text-white font-semibold hover:text-gray-300"
+            >
+              Register
+            </.link>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/log_in"}
+              class="text-[1.2rem] leading-6 text-white font-semibold hover:text-gray-300"
+            >
+              Log in
+            </.link>
+          </li>
+        <% end %>
+        
+        <li>
+          <button
+            id="theme-toggle"
+            class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m0-11.314l.707.707M17.657 17.657l.707-.707"
+              />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="main-container">
+      <nav aria-label="Sidebar" class="sidebar">
+        <div class="flex flex-col gap-1 pt-3">
+          <%= if @current_user.role.permission.name == "superadmin" do %>
+            <a
+              class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              href="/admin/users/"
+            >
+              Users
+            </a>
+          <% end %>
+    
+          <a
+            class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="/admin/invited-users/"
+          >
+            Invited users
+          </a>
+    
+          <%= if @current_user.role.permission.name in ["superadmin", "operator"] do %>
+            <a
+              class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              href="/admin/site-configs/"
+            >
+              Site Configs
+            </a>
+          <% end %>
+    
+          <%= if @current_user.role.permission.name in ["superadmin", "operator"] do %>
+            <a
+              class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              href="/admin/roles/"
+            >
+              Roles
+            </a>
+          <% end %>
+    
+          <%= if @current_user.role.permission.name == "superadmin" do %>
+            <a
+              class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              href="/admin/operators/"
+            >
+              Operators
+            </a>
+          <% end %>
+    
+          <a
+            class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="/admin/account-managers/"
+          >
+            Account Managers
+          </a>
+    
+          <a
+            class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="/admin/policy/"
+          >
+            Global Targets Policy
+          </a>
+    
+          <a
+            class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="/admin/tags/"
+          >
+            Tags
+          </a>
+    
+          <a
+            class="flex p-2 bg-transparent cursor-pointer transition items-center justify-start rounded-moon-i-sm gap-2 text-moon-14 w-full focus:outline-none focus:shadow-focus hover:bg-heles hover:text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="/admin/posts/"
+          >
+            Posts
+          </a>
+        </div>
+      </nav>
+    
+      <main class="content">
+        <div class="table-container">
+          <%= @inner_content %>
+        </div>
+      </main>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.body.classList.toggle('dark', currentTheme === 'dark');
+        document.body.classList.toggle('light', currentTheme === 'light');
+
+        themeToggle.addEventListener('click', function () {
+          const isDarkMode = document.body.classList.toggle('dark');
+          document.body.classList.toggle('light', !isDarkMode);
+          localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Phoenix Framework">
+      <%= assigns[:page_title] || "MySuperApp" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  
+  <body class="flex ... theme-moon-light" dir="ltr">
+    <button id="menu-toggle" class="p-2 bg-gray-800 text-white fixed top-4 left-4 z-20">
+      ☰ Menu
+    </button>
+  
+    <nav id="sidebar" class="w-64 p-4 bg-gray-900 text-white fixed top-16 left-0 h-full transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <ul class="space-y-2">
+        <li>
+          <.link
+            href={~p"/blackjack"}
+            class="block px-3 py-2 rounded-md hover:bg-gray-700"
+          >
+            Blackjack
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/roulette"}
+            class="block px-3 py-2 rounded-md hover:bg-gray-700"
+          >
+            Roulette
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/cryptos"}
+            class="block px-3 py-2 rounded-md hover:bg-gray-700"
+          >
+            Cryptos
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/betting"}
+            class="block px-3 py-2 rounded-md hover:bg-gray-700"
+          >
+            Betting
+          </.link>
+        </li>
+  
+        <%= if @current_user do %>
+          <li class="text-[0.875rem] leading-6 text-zinc-900 font-semibold">
+            Balance: <%= @current_user.balance %>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/deposit"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Deposit
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/withdrawals"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Withdrawal
+            </.link>
+          </li>
+  
+          <li>
+            <.link
+              href={~p"/betting_history"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Bet History
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/transactions"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Crypto transaction 
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/currencies"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Popular Currencies
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/upload"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Verify your account
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/users/settings"}
+              class="block px-3 py-2 rounded-md hover:bg-gray-700"
+            >
+              Settings
+            </.link>
+          </li>
+
+          
+          <li>
+            <.link
+              href={~p"/users/log_out"}
+              method="delete"
+              class="block px-3 py-2 rounded-md hover:bg-red-700"
+            >
+              Log out
+            </.link>
+          </li>
+        <% else %>
+          <li>
+            <.link
+              href={~p"/users/register"}
+              class="block px-3 py-2 rounded-md hover:bg-green-700"
+            >
+              Register
+            </.link>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/log_in"}
+              class="block px-3 py-2 rounded-md hover:bg-blue-700"
+            >
+              Log in
+            </.link>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+  
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+      });
+    </script>
+    
+    <div class="flex-1">
+      <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+        <%= if @current_user do %>
+          
+          <li>
+            <.link
+              href={~p"/deposit"}
+              class="text-[0.875rem] leading-6 text-white font-semibold px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+            >
+            <%= @current_user.email %> 
+            </.link>
+          </li>
+
+          <li>
+            <.link
+              href={~p"/users/settings"}
+              class="text-[0.875rem] leading-6 text-white font-semibold px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+            >
+              Settings
+            </.link>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/log_out"}
+              method="delete"
+              class="text-[0.875rem] leading-6 text-white font-semibold px-3 py-2 rounded-md bg-red-600 hover:bg-red-700"
+            >
+              Log out
+            </.link>
+          </li>
+        <% else %>
+          <li>
+            <.link
+              href={~p"/users/register"}
+              class="text-[0.875rem] leading-6 text-white font-semibold px-3 py-2 rounded-md bg-green-600 hover:bg-green-700"
+            >
+              Register
+            </.link>
+          </li>
+          
+          <li>
+            <.link
+              href={~p"/users/log_in"}
+              class="text-[0.875rem] leading-6 text-white font-semibold px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+            >
+              Log in
+            </.link>
+          </li>
+        <% end %>
+      </ul>
+      
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <%= @inner_content %>
+    </div>
+  </body>
+</html>
