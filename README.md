@@ -1,124 +1,100 @@
-Phoenix LiveView Platform
+# Phoenix LiveView Platform
 
-Overview
+## Overview
 
-This platform is built using Elixir and Phoenix LiveView, offering a variety of features, including:
+The **Phoenix LiveView Platform** is a robust and dynamic application built with **Elixir** and **Phoenix LiveView**, offering real-time interactivity across multiple domains:
 
-A cryptocurrency trading interface with futures functionality (integrating Binance API).
+- **Cryptocurrency Trading Interface** (Futures Trading, Binance API Integration)
+- **Casino & Sports Betting** (Blackjack, Roulette, and Live Sports Betting)
+- **Cryptocurrency Wallet Manager** (MetaMask Integration)
+- **Admin Panel** (Role-Based Access Control)
+- **Blog System** (User-Generated Content)
+- **Secure Authentication** (Google OAuth2, Two-Factor Authentication)
 
-A Blackjack game and sports betting options.
+## Getting Started
 
-A cryptocurrency wallet manager integrated with MetaMask.
+### Installation
 
-An admin panel with role-based access control.
+1. Clone the repository:
+   ```sh
+   git clone <repository_url>
+   cd phoenix_liveview_platform
+   ```
+2. Install dependencies:
+   ```sh
+   mix setup
+   ```
+3. Start the Phoenix server:
+   ```sh
+   mix phx.server
+   ```
+   or using IEx:
+   ```sh
+   iex -S mix phx.server
+   ```
+4. Open your browser and go to:
+   ```
+   http://localhost:4000
+   ```
 
-A blog system with user-generated content.
+### Deployment
+For production deployment, refer to the official [Phoenix Deployment Guide](https://hexdocs.pm/phoenix/deployment.html).
 
-Authentication via Google OAuth and two-factor authentication (2FA) using Google Authenticator.
+---
 
-Getting Started
+## Modules & Features
 
-To start your Phoenix server:
+### 🚀 Cryptocurrency Trading Platform
+- **Binance API Integration** for real-time market data.
+- **Futures Trading Support**.
+- **Live Candlestick Charts** for price tracking.
+- **Historical Price Tracking & Alerts**.
 
-Install and set up dependencies:
+### 🎰 Casino & Betting System
+#### 🃏 Blackjack Game
+- Real-time gameplay powered by **Phoenix LiveView**.
+- **Bet Placement, Card Drawing, and Balance Tracking**.
 
-mix setup
+#### 🎡 Roulette Game
+- **Chip-based Betting System** with visual feedback.
+- **Interactive Betting Table** (red/black, odd/even, specific numbers).
 
-Start the Phoenix endpoint:
+#### ⚽ Sports Betting
+- **Live Betting on Sports Events**.
+- **Real-time Odds Updates**.
 
-mix phx.server
+### 💰 MetaWallet - Cryptocurrency Wallet Manager
+- **Ethereum Wallet Integration**.
+- **MetaMask Support** for deposits and balance verification.
+- **Ganache Integration** for test ETH accounts.
 
-or inside IEx:
+### 🛠️ Admin Panel
+- **Role-Based Access Control**:
+  - **Superadmins:** Full control over users, operators, and settings.
+  - **Admins:** Manage users within their assigned operator scope.
+  - **Operators:** Handle user requests and transactions.
+- **User Activity & System Event Logs**.
+- **Trading & Betting Limits Management**.
 
-iex -S mix phx.server
+### 📝 Blog System
+- **User-Generated Content** (Create, Edit, Manage Posts).
+- **Tagging System** for content categorization.
+- **Post Filtering & Pagination**.
 
-Open localhost:4000 in your browser.
+### 🔒 Authentication & Security
+- **Google OAuth2 Authentication**.
+- **Two-Factor Authentication (2FA) via Google Authenticator**.
+- **Role-Based Access Enforcement**.
+- **Secure Session Management**.
 
-For production deployment, refer to the Phoenix deployment guide.
+---
 
-Modules & Features
+## 📖 Learn More
+- 🔗 **Official Website:** [Phoenix Framework](https://www.phoenixframework.org/)
+- 📚 **Guides:** [Phoenix Docs](https://hexdocs.pm/phoenix/overview.html)
+- 💬 **Community Forum:** [Elixir Forum - Phoenix](https://elixirforum.com/c/phoenix-forum/9)
+- 🛠️ **Source Code:** [GitHub - Phoenix Framework](https://github.com/phoenixframework/phoenix)
 
-Cryptocurrency Trading Platform
+---
 
-Integrates Binance API to fetch real-time market data.
-
-Supports futures trading.
-
-Displays live candlestick charts with price movements.
-
-Allows users to track price history and set alerts.
-
-Casino & Betting System
-
-Blackjack Game:
-
-Built with Phoenix LiveView for real-time gameplay.
-
-Users can place bets, draw cards, and track their balance.
-
-Roulette Game:
-
-Chip-based betting with visual feedback.
-
-Interactive table with different betting options (red/black, odd/even, specific numbers, etc.).
-
-Sports Betting:
-
-Users can place bets on various sports events.
-
-Live odds updates.
-
-MetaWallet - Cryptocurrency Wallet Manager
-
-Demo application for interacting with Ethereum wallets.
-
-Integrates MetaMask for deposits and balance checks.
-
-Uses Ganache to create test ETH accounts for secure transaction testing.
-
-Admin Panel
-
-Role-based access control:
-
-Superadmins: Full control over users, operators, and settings.
-
-Admins: Manage users within their assigned operator scope.
-
-Operators: Handle user requests and transactions.
-
-Logs user activities and system events.
-
-Manages cryptocurrency trading settings and betting limits.
-
-Blog System
-
-Users can create, edit, and manage posts.
-
-Tagging system for better content organization.
-
-Preloads associated tags for efficient queries.
-
-Filters posts by user and supports pagination.
-
-Authentication & Security
-
-Google OAuth2 authentication for easy login.
-
-Two-Factor Authentication (2FA) using Google Authenticator.
-
-Access control: Permissions are enforced based on user roles.
-
-Session management: Secure login/logout handling.
-
-Learn More
-
-Official website: Phoenix Framework
-
-Guides: Phoenix Docs
-
-Forum: Elixir Forum - Phoenix
-
-Source code: GitHub - Phoenix Framework
-
-This platform is a fully featured system combining trading, gaming, and content management in a seamless real-time environment using Phoenix LiveView.
-
+This platform seamlessly integrates **trading, gaming, and content management** into a real-time, interactive experience powered by **Phoenix LiveView**. 🚀
