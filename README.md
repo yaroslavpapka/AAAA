@@ -70,6 +70,7 @@ For production deployment, refer to the official [Phoenix Deployment Guide](http
 - **Ganache Integration** for test ETH accounts.
 
 ### 🛠️ Admin Panel
+📺 Demo Video: [![Demonstrate](https://img.youtube.com/vi/9ThEfC_mOjM/maxresdefault.jpg)](https://youtu.be/9ThEfC_mOjM)
 - **Role-Based Access Control**:
   - **Superadmins:** Full control over users, operators, and settings.
   - **Admins:** Manage users within their assigned operator scope.
