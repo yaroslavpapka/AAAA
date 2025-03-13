@@ -64,6 +64,7 @@ For production deployment, refer to the official [Phoenix Deployment Guide](http
 - **Real-time Odds Updates**.
 
 ### 💰 MetaWallet - Cryptocurrency Wallet Manager
+📺 Demo Video: [![Demonstrate](https://img.youtube.com/vi/sS6hzllhsdA/maxresdefault.jpg)](https://youtu.be/sS6hzllhsdA)
 - **Ethereum Wallet Integration**.
 - **MetaMask Support** for deposits and balance verification.
 - **Ganache Integration** for test ETH accounts.
