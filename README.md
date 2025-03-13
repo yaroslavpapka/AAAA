@@ -121,3 +121,4 @@ Forum: Elixir Forum - Phoenix
 Source code: GitHub - Phoenix Framework
 
 This platform is a fully featured system combining trading, gaming, and content management in a seamless real-time environment using Phoenix LiveView.
+
