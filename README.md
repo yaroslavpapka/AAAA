@@ -83,6 +83,7 @@ For production deployment, refer to the official [Phoenix Deployment Guide](http
 - **User-Generated Content** (Create, Edit, Manage Posts).
 - **Tagging System** for content categorization.
 - **Post Filtering & Pagination**.
+- **Image Upload to S3 Bucket for storing post-related images**.
 
 ### 🔒 Authentication & Security
 - **Google OAuth2 Authentication**.
@@ -90,6 +91,9 @@ For production deployment, refer to the official [Phoenix Deployment Guide](http
 - **Role-Based Access Enforcement**.
 - **Secure Session Management**.
 
+### 📤 Background Processing & Notifications
+- **Oban Job Queue for background tasks like email notifications and data processing.**.
+- **Bulk Message Dispatching for system-wide announcements**.
 ---
 
 ## 📖 Learn More
