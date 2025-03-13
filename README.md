@@ -45,6 +45,7 @@ For production deployment, refer to the official [Phoenix Deployment Guide](http
 ## Modules & Features
 
 ### 🚀 Cryptocurrency Trading Platform
+📺 Demo Video:[![Demonstrate](https://img.youtube.com/vi/FA06pQ66yl8/maxresdefault.jpg)](https://youtu.be/FA06pQ66yl8)
 - **Binance API Integration** for real-time market data.
 - **Futures Trading Support**.
 - **Live Candlestick Charts** for price tracking.
